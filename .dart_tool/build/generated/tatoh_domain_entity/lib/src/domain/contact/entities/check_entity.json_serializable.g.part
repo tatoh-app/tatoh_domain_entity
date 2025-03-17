@@ -1,0 +1,12 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CheckEntity _$CheckEntityFromJson(Map<String, dynamic> json) => CheckEntity(
+      checked: json['checked'] as bool,
+    );
+
+Map<String, dynamic> _$CheckEntityToJson(CheckEntity instance) =>
+    <String, dynamic>{
+      'checked': instance.checked,
+    };

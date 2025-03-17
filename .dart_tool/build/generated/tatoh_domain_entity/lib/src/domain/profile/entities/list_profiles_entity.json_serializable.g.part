@@ -1,0 +1,14 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ListProfilesEntity _$ListProfilesEntityFromJson(Map<String, dynamic> json) =>
+    ListProfilesEntity(
+      user: ListProfilesEntity._userFromJson(
+          json['user'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ListProfilesEntityToJson(ListProfilesEntity instance) =>
+    <String, dynamic>{
+      'user': ListProfilesEntity._userToJson(instance.user),
+    };

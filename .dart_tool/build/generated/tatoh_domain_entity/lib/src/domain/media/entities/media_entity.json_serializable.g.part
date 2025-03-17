@@ -1,0 +1,44 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+MediaEntity _$MediaEntityFromJson(Map<String, dynamic> json) => MediaEntity(
+      id: json['id'] as String,
+      fileName: json['fileName'] as String,
+      type: $enumDecode(_$MediaTypeEnumMap, json['type']),
+      url: json['url'] as String,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
+      size: (json['size'] as num).toInt(),
+      mimeType: json['mimeType'] as String,
+      duration: (json['duration'] as num?)?.toDouble(),
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      uploadedBy: json['uploadedBy'] as String,
+      uploadedAt: DateTime.parse(json['uploadedAt'] as String),
+      metadata: json['metadata'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$MediaEntityToJson(MediaEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'fileName': instance.fileName,
+      'type': _$MediaTypeEnumMap[instance.type]!,
+      'url': instance.url,
+      'thumbnailUrl': instance.thumbnailUrl,
+      'size': instance.size,
+      'mimeType': instance.mimeType,
+      'duration': instance.duration,
+      'width': instance.width,
+      'height': instance.height,
+      'uploadedBy': instance.uploadedBy,
+      'uploadedAt': instance.uploadedAt.toIso8601String(),
+      'metadata': instance.metadata,
+    };
+
+const _$MediaTypeEnumMap = {
+  MediaType.image: 'image',
+  MediaType.video: 'video',
+  MediaType.audio: 'audio',
+  MediaType.document: 'document',
+  MediaType.other: 'other',
+};

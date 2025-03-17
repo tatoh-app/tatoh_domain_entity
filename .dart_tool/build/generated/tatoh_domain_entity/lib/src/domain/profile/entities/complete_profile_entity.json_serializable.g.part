@@ -1,0 +1,37 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CompleteProfileEntity _$CompleteProfileEntityFromJson(
+        Map<String, dynamic> json) =>
+    CompleteProfileEntity(
+      id: (json['id'] as num?)?.toInt(),
+      userId: (json['userId'] as num?)?.toInt(),
+      slug: json['slug'] as String?,
+      name: json['name'] as String?,
+      bio: json['bio'] as String?,
+      photoUrl: json['photoUrl'] as String?,
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
+      links: (json['links'] as List<dynamic>?)
+          ?.map((e) => LinkEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      qrcodes: (json['qrcodes'] as List<dynamic>?)
+          ?.map((e) => QRCodeEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$CompleteProfileEntityToJson(
+        CompleteProfileEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'slug': instance.slug,
+      'name': instance.name,
+      'bio': instance.bio,
+      'photoUrl': instance.photoUrl,
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      'links': instance.links,
+      'qrcodes': instance.qrcodes,
+    };

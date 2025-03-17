@@ -1,0 +1,18 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+QRCodeEntity _$QRCodeEntityFromJson(Map<String, dynamic> json) => QRCodeEntity(
+      id: (json['id'] as num?)?.toInt(),
+      profileId: (json['profileId'] as num?)?.toInt(),
+      qrcode: json['qrcode'] as String?,
+      artworkUrl: json['artworkUrl'] as String?,
+    );
+
+Map<String, dynamic> _$QRCodeEntityToJson(QRCodeEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'profileId': instance.profileId,
+      'qrcode': instance.qrcode,
+      'artworkUrl': instance.artworkUrl,
+    };

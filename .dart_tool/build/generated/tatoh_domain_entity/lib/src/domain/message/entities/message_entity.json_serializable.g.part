@@ -1,0 +1,53 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+MessageEntity _$MessageEntityFromJson(Map<String, dynamic> json) =>
+    MessageEntity(
+      id: json['id'] as String,
+      conversationId: json['conversationId'] as String,
+      senderId: json['senderId'] as String,
+      type: $enumDecode(_$MessageTypeEnumMap, json['type']),
+      content: json['content'] as String,
+      metadata: json['metadata'] as Map<String, dynamic>?,
+      timestamp: DateTime.parse(json['timestamp'] as String),
+      status: $enumDecode(_$MessageStatusEnumMap, json['status']),
+      isDeleted: json['isDeleted'] as bool? ?? false,
+      reactions: (json['reactions'] as Map<String, dynamic>?)?.map(
+        (k, e) =>
+            MapEntry(k, (e as List<dynamic>).map((e) => e as String).toList()),
+      ),
+    );
+
+Map<String, dynamic> _$MessageEntityToJson(MessageEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'conversationId': instance.conversationId,
+      'senderId': instance.senderId,
+      'type': _$MessageTypeEnumMap[instance.type]!,
+      'content': instance.content,
+      'metadata': instance.metadata,
+      'timestamp': instance.timestamp.toIso8601String(),
+      'status': _$MessageStatusEnumMap[instance.status]!,
+      'isDeleted': instance.isDeleted,
+      'reactions': instance.reactions,
+    };
+
+const _$MessageTypeEnumMap = {
+  MessageType.text: 'text',
+  MessageType.image: 'image',
+  MessageType.video: 'video',
+  MessageType.audio: 'audio',
+  MessageType.file: 'file',
+  MessageType.location: 'location',
+  MessageType.contact: 'contact',
+  MessageType.system: 'system',
+};
+
+const _$MessageStatusEnumMap = {
+  MessageStatus.sending: 'sending',
+  MessageStatus.sent: 'sent',
+  MessageStatus.delivered: 'delivered',
+  MessageStatus.read: 'read',
+  MessageStatus.failed: 'failed',
+};

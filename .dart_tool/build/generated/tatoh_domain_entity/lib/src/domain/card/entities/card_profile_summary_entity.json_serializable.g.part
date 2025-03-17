@@ -1,0 +1,19 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CardProfileSummaryEntity _$CardProfileSummaryEntityFromJson(
+        Map<String, dynamic> json) =>
+    CardProfileSummaryEntity(
+      name: json['name'] as String,
+      slug: json['slug'] as String,
+      photoUrl: json['photoUrl'] as String,
+    );
+
+Map<String, dynamic> _$CardProfileSummaryEntityToJson(
+        CardProfileSummaryEntity instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'slug': instance.slug,
+      'photoUrl': instance.photoUrl,
+    };

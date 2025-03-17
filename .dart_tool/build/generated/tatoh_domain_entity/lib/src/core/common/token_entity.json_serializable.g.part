@@ -1,0 +1,16 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+TokenEntity _$TokenEntityFromJson(Map<String, dynamic> json) => TokenEntity(
+      tokenType: json['type'] == null
+          ? TokenType.bearer
+          : TokenTypeExtension.fromString(json['type'] as String?),
+      token: json['token'] as String,
+    );
+
+Map<String, dynamic> _$TokenEntityToJson(TokenEntity instance) =>
+    <String, dynamic>{
+      'type': TokenEntity._tokenTypeToString(instance.tokenType),
+      'token': instance.token,
+    };

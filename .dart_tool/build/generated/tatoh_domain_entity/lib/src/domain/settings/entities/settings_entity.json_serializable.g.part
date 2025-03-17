@@ -1,0 +1,68 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+SettingsEntity _$SettingsEntityFromJson(Map<String, dynamic> json) =>
+    SettingsEntity(
+      userId: json['userId'] as String,
+      theme: $enumDecodeNullable(_$AppThemeEnumMap, json['theme']) ??
+          AppTheme.system,
+      language: $enumDecodeNullable(_$AppLanguageEnumMap, json['language']) ??
+          AppLanguage.systemDefault,
+      pushNotificationsEnabled:
+          json['pushNotificationsEnabled'] as bool? ?? true,
+      messageNotificationsEnabled:
+          json['messageNotificationsEnabled'] as bool? ?? true,
+      contactNotificationsEnabled:
+          json['contactNotificationsEnabled'] as bool? ?? true,
+      notificationSoundsEnabled:
+          json['notificationSoundsEnabled'] as bool? ?? true,
+      notificationVibrationEnabled:
+          json['notificationVibrationEnabled'] as bool? ?? true,
+      showMessagePreviewInNotifications:
+          json['showMessagePreviewInNotifications'] as bool? ?? true,
+      autoBackupEnabled: json['autoBackupEnabled'] as bool? ?? false,
+      autoBackupFrequencyDays:
+          (json['autoBackupFrequencyDays'] as num?)?.toInt() ?? 7,
+      lastBackupDate: json['lastBackupDate'] == null
+          ? null
+          : DateTime.parse(json['lastBackupDate'] as String),
+      privacySettings: (json['privacySettings'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as bool),
+      ),
+      additionalSettings: json['additionalSettings'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$SettingsEntityToJson(SettingsEntity instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'theme': _$AppThemeEnumMap[instance.theme]!,
+      'language': _$AppLanguageEnumMap[instance.language]!,
+      'pushNotificationsEnabled': instance.pushNotificationsEnabled,
+      'messageNotificationsEnabled': instance.messageNotificationsEnabled,
+      'contactNotificationsEnabled': instance.contactNotificationsEnabled,
+      'notificationSoundsEnabled': instance.notificationSoundsEnabled,
+      'notificationVibrationEnabled': instance.notificationVibrationEnabled,
+      'showMessagePreviewInNotifications':
+          instance.showMessagePreviewInNotifications,
+      'autoBackupEnabled': instance.autoBackupEnabled,
+      'autoBackupFrequencyDays': instance.autoBackupFrequencyDays,
+      'lastBackupDate': instance.lastBackupDate?.toIso8601String(),
+      'privacySettings': instance.privacySettings,
+      'additionalSettings': instance.additionalSettings,
+    };
+
+const _$AppThemeEnumMap = {
+  AppTheme.system: 'system',
+  AppTheme.light: 'light',
+  AppTheme.dark: 'dark',
+};
+
+const _$AppLanguageEnumMap = {
+  AppLanguage.systemDefault: 'systemDefault',
+  AppLanguage.english: 'english',
+  AppLanguage.portuguese: 'portuguese',
+  AppLanguage.spanish: 'spanish',
+  AppLanguage.french: 'french',
+  AppLanguage.german: 'german',
+};

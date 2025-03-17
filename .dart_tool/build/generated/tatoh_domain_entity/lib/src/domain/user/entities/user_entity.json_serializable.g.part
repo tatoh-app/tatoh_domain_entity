@@ -1,0 +1,24 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserEntity _$UserEntityFromJson(Map<String, dynamic> json) => UserEntity(
+      id: json['id'] as String,
+      email: json['email'] as String,
+      name: json['name'] as String,
+      photoUrl: json['photoUrl'] as String?,
+      emailVerified: json['emailVerified'] as bool,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'email': instance.email,
+      'name': instance.name,
+      'photoUrl': instance.photoUrl,
+      'emailVerified': instance.emailVerified,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+    };

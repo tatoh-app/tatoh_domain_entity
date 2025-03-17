@@ -1,0 +1,21 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProfileCardWidgetEntity _$ProfileCardWidgetEntityFromJson(
+        Map<String, dynamic> json) =>
+    ProfileCardWidgetEntity(
+      name: json['name'] as String?,
+      slug: json['slug'] as String?,
+      photoUrl: json['photoUrl'] as String?,
+      qrCode: json['qrCode'] as String?,
+    );
+
+Map<String, dynamic> _$ProfileCardWidgetEntityToJson(
+        ProfileCardWidgetEntity instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'slug': instance.slug,
+      'photoUrl': instance.photoUrl,
+      'qrCode': instance.qrCode,
+    };

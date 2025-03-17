@@ -1,0 +1,15 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ResponseGetDownloadUrlEntity _$ResponseGetDownloadUrlEntityFromJson(
+        Map<String, dynamic> json) =>
+    ResponseGetDownloadUrlEntity(
+      downloadUrl: json['downloadUrl'] as String?,
+    );
+
+Map<String, dynamic> _$ResponseGetDownloadUrlEntityToJson(
+        ResponseGetDownloadUrlEntity instance) =>
+    <String, dynamic>{
+      'downloadUrl': instance.downloadUrl,
+    };

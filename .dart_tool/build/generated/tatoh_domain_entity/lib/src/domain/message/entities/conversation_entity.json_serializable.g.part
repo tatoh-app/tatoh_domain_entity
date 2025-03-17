@@ -1,0 +1,52 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ConversationEntity _$ConversationEntityFromJson(Map<String, dynamic> json) =>
+    ConversationEntity(
+      id: json['id'] as String,
+      type: $enumDecode(_$ConversationTypeEnumMap, json['type']),
+      name: json['name'] as String?,
+      photoUrl: json['photoUrl'] as String?,
+      participantIds: (json['participantIds'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      lastMessageId: json['lastMessageId'] as String?,
+      lastMessageContent: json['lastMessageContent'] as String?,
+      lastMessageTimestamp: json['lastMessageTimestamp'] == null
+          ? null
+          : DateTime.parse(json['lastMessageTimestamp'] as String),
+      lastMessageSenderId: json['lastMessageSenderId'] as String?,
+      unreadCount: (json['unreadCount'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, (e as num).toInt()),
+      ),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      isArchived: json['isArchived'] as bool? ?? false,
+      isMuted: json['isMuted'] as bool? ?? false,
+      isPinned: json['isPinned'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$ConversationEntityToJson(ConversationEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'type': _$ConversationTypeEnumMap[instance.type]!,
+      'name': instance.name,
+      'photoUrl': instance.photoUrl,
+      'participantIds': instance.participantIds,
+      'lastMessageId': instance.lastMessageId,
+      'lastMessageContent': instance.lastMessageContent,
+      'lastMessageTimestamp': instance.lastMessageTimestamp?.toIso8601String(),
+      'lastMessageSenderId': instance.lastMessageSenderId,
+      'unreadCount': instance.unreadCount,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'isArchived': instance.isArchived,
+      'isMuted': instance.isMuted,
+      'isPinned': instance.isPinned,
+    };
+
+const _$ConversationTypeEnumMap = {
+  ConversationType.individual: 'individual',
+  ConversationType.group: 'group',
+};

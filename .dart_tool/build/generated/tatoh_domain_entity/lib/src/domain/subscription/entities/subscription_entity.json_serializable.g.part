@@ -1,0 +1,23 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+SubscriptionEntity _$SubscriptionEntityFromJson(Map<String, dynamic> json) =>
+    SubscriptionEntity(
+      id: SubscriptionEntity._idFromJson((json['id'] as num?)?.toInt()),
+      planId:
+          SubscriptionEntity._planIdFromJson((json['planId'] as num?)?.toInt()),
+      userId:
+          SubscriptionEntity._userIdFromJson((json['userId'] as num?)?.toInt()),
+      createdAt: SubscriptionEntity._dateFromJson(json['createdAt'] as String?),
+      updatedAt: SubscriptionEntity._dateFromJson(json['updatedAt'] as String?),
+    );
+
+Map<String, dynamic> _$SubscriptionEntityToJson(SubscriptionEntity instance) =>
+    <String, dynamic>{
+      'id': SubscriptionEntity._idToJson(instance.id),
+      'planId': SubscriptionEntity._planIdToJson(instance.planId),
+      'userId': SubscriptionEntity._userIdToJson(instance.userId),
+      'createdAt': SubscriptionEntity._dateToJson(instance.createdAt),
+      'updatedAt': SubscriptionEntity._dateToJson(instance.updatedAt),
+    };

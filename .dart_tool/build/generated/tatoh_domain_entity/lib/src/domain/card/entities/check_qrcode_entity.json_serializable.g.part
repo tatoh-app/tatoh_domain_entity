@@ -1,0 +1,20 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CheckQRCodeEntity _$CheckQRCodeEntityFromJson(Map<String, dynamic> json) =>
+    CheckQRCodeEntity(
+      check: json['check'] as bool,
+      id: CheckQRCodeEntity._idFromJson((json['id'] as num?)?.toInt()),
+      profileId: CheckQRCodeEntity._profileIdFromJson(
+          (json['profileId'] as num?)?.toInt()),
+      code: json['code'] as String,
+    );
+
+Map<String, dynamic> _$CheckQRCodeEntityToJson(CheckQRCodeEntity instance) =>
+    <String, dynamic>{
+      'check': instance.check,
+      'id': CheckQRCodeEntity._idToJson(instance.id),
+      'profileId': CheckQRCodeEntity._profileIdToJson(instance.profileId),
+      'code': instance.code,
+    };

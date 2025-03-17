@@ -1,0 +1,43 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+NotificationEntity _$NotificationEntityFromJson(Map<String, dynamic> json) =>
+    NotificationEntity(
+      id: json['id'] as String,
+      userId: json['userId'] as String,
+      title: json['title'] as String,
+      body: json['body'] as String,
+      type: $enumDecode(_$NotificationTypeEnumMap, json['type']),
+      data: json['data'] as Map<String, dynamic>?,
+      timestamp: DateTime.parse(json['timestamp'] as String),
+      isRead: json['isRead'] as bool? ?? false,
+      isDeleted: json['isDeleted'] as bool? ?? false,
+      imageUrl: json['imageUrl'] as String?,
+      action: json['action'] as String?,
+    );
+
+Map<String, dynamic> _$NotificationEntityToJson(NotificationEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'title': instance.title,
+      'body': instance.body,
+      'type': _$NotificationTypeEnumMap[instance.type]!,
+      'data': instance.data,
+      'timestamp': instance.timestamp.toIso8601String(),
+      'isRead': instance.isRead,
+      'isDeleted': instance.isDeleted,
+      'imageUrl': instance.imageUrl,
+      'action': instance.action,
+    };
+
+const _$NotificationTypeEnumMap = {
+  NotificationType.system: 'system',
+  NotificationType.message: 'message',
+  NotificationType.contact: 'contact',
+  NotificationType.card: 'card',
+  NotificationType.event: 'event',
+  NotificationType.reminder: 'reminder',
+  NotificationType.other: 'other',
+};

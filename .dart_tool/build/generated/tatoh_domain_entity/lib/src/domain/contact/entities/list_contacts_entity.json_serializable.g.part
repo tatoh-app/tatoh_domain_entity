@@ -1,0 +1,15 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ListContactsEntity _$ListContactsEntityFromJson(Map<String, dynamic> json) =>
+    ListContactsEntity(
+      contacts: (json['contacts'] as List<dynamic>?)
+          ?.map((e) => SimpleContactEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$ListContactsEntityToJson(ListContactsEntity instance) =>
+    <String, dynamic>{
+      'contacts': instance.contacts,
+    };

@@ -1,0 +1,32 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+FeedItemEntity _$FeedItemEntityFromJson(Map<String, dynamic> json) =>
+    FeedItemEntity(
+      description: json['description'] as String,
+      title: json['title'] as String,
+      local: json['local'] as String?,
+      urlLink: FeedItemEntity._urlFromJson(json['urlLink'] as String?),
+      urlImage: FeedItemEntity._urlFromJson(json['urlImage'] as String?),
+    );
+
+Map<String, dynamic> _$FeedItemEntityToJson(FeedItemEntity instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+      'title': instance.title,
+      'local': instance.local,
+      'urlLink': FeedItemEntity._urlToJson(instance.urlLink),
+      'urlImage': FeedItemEntity._urlToJson(instance.urlImage),
+    };
+
+FeedEntity _$FeedEntityFromJson(Map<String, dynamic> json) => FeedEntity(
+      feed: (json['feed'] as List<dynamic>)
+          .map((e) => FeedItemEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$FeedEntityToJson(FeedEntity instance) =>
+    <String, dynamic>{
+      'feed': instance.feed,
+    };

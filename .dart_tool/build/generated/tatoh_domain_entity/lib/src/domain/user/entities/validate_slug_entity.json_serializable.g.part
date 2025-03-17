@@ -1,0 +1,15 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ValidateSlugEntity _$ValidateSlugEntityFromJson(Map<String, dynamic> json) =>
+    ValidateSlugEntity(
+      validate: json['validate'] as bool?,
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$ValidateSlugEntityToJson(ValidateSlugEntity instance) =>
+    <String, dynamic>{
+      'validate': instance.validate,
+      'message': instance.message,
+    };

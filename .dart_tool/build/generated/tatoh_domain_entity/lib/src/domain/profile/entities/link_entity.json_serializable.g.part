@@ -1,0 +1,22 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+LinkEntity _$LinkEntityFromJson(Map<String, dynamic> json) => LinkEntity(
+      id: (json['id'] as num?)?.toInt(),
+      profileId: (json['profileId'] as num?)?.toInt(),
+      title: json['title'] as String?,
+      url: json['url'] as String?,
+      icon: json['icon'] as String?,
+      order: (json['order'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$LinkEntityToJson(LinkEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'profileId': instance.profileId,
+      'title': instance.title,
+      'url': instance.url,
+      'icon': instance.icon,
+      'order': instance.order,
+    };

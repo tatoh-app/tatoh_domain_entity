@@ -1,0 +1,15 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+SolidColorsEntity _$SolidColorsEntityFromJson(Map<String, dynamic> json) =>
+    SolidColorsEntity(
+      id: SolidColorsEntity._idFromJson((json['id'] as num).toInt()),
+      color: SolidColorsEntity._colorFromJson((json['color'] as num).toInt()),
+    );
+
+Map<String, dynamic> _$SolidColorsEntityToJson(SolidColorsEntity instance) =>
+    <String, dynamic>{
+      'id': SolidColorsEntity._idToJson(instance.id),
+      'color': SolidColorsEntity._colorToJson(instance.color),
+    };

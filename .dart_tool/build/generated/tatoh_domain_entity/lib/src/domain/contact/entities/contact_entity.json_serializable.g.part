@@ -1,0 +1,43 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ContactEntity _$ContactEntityFromJson(Map<String, dynamic> json) =>
+    ContactEntity(
+      id: (json['id'] as num).toInt(),
+      ownerProfileId: (json['ownerProfileId'] as num).toInt(),
+      contactProfileId: (json['contactProfileId'] as num).toInt(),
+      name: json['name'] as String,
+      slug: json['slug'] as String,
+      photoUrl: json['photoUrl'] as String?,
+      title: json['title'] as String?,
+      company: json['company'] as String?,
+      phoneNumber: json['phoneNumber'] as String?,
+      email: json['email'] as String?,
+      notes: json['notes'] as String?,
+      addedAt: DateTime.parse(json['addedAt'] as String),
+      lastInteractionAt: json['lastInteractionAt'] == null
+          ? null
+          : DateTime.parse(json['lastInteractionAt'] as String),
+      isFavorite: json['isFavorite'] as bool? ?? false,
+      tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    );
+
+Map<String, dynamic> _$ContactEntityToJson(ContactEntity instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'ownerProfileId': instance.ownerProfileId,
+      'contactProfileId': instance.contactProfileId,
+      'name': instance.name,
+      'slug': instance.slug,
+      'photoUrl': instance.photoUrl,
+      'title': instance.title,
+      'company': instance.company,
+      'phoneNumber': instance.phoneNumber,
+      'email': instance.email,
+      'notes': instance.notes,
+      'addedAt': instance.addedAt.toIso8601String(),
+      'lastInteractionAt': instance.lastInteractionAt?.toIso8601String(),
+      'isFavorite': instance.isFavorite,
+      'tags': instance.tags,
+    };
