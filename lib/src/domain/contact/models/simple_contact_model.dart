@@ -18,7 +18,7 @@ class SimpleContactModel extends SimpleContactEntity {
     return SimpleContactModel(
       name: json['name'] as String?,
       slug: json['slug'] as String?,
-      photoUrl: json['photoUrl'] as String?,
+      photoUrl: json['photo_url'] as String?,
     );
   }
 
@@ -27,7 +27,7 @@ class SimpleContactModel extends SimpleContactEntity {
     return {
       'name': name,
       'slug': slug,
-      'photoUrl': photoUrl,
+      'photo_url': photoUrl,
     };
   }
 
