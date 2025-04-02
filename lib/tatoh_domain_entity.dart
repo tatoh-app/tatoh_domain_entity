@@ -7,16 +7,18 @@
 library tatoh_domain_entity;
 
 // Domain
-export 'src/domain/user/user.dart';
+export 'lib/src/domain/user/user_entity.dart'; // Corrected path
+export 'lib/src/domain/profile/profile_entity.dart'; // Corrected path
+export 'lib/src/domain/link/link_entity.dart'; // Corrected path
+export 'lib/src/domain/qrcode/qrcode_entity.dart'; // Corrected path
+export 'lib/src/domain/subscription/subscription_entity.dart'; // Corrected path
+// export 'src/domain/feed/feed.dart'; // Removed as per plan - Path was likely incorrect too
+
+// Existing exports (assuming paths are correct or will be fixed separately if needed)
 export 'src/domain/card/card.dart';
 export 'src/domain/contact/contact.dart';
 export 'src/domain/notification/notification.dart';
 export 'src/domain/message/message.dart';
-export 'src/domain/feed/feed.dart';
-export 'src/domain/subscription/subscription.dart';
 export 'src/domain/theme/theme.dart';
 export 'src/domain/media/media.dart';
-export 'src/domain/profile/profile.dart';
 export 'src/domain/settings/settings.dart';
-
-
