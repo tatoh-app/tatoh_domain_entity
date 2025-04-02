@@ -1,16 +1,13 @@
 /// Entidade que representa um usuário no sistema
 class UserEntity {
   /// ID único do usuário
-  final String id;
+  final int id;
   
   /// Email do usuário
   final String email;
   
   /// Nome do usuário
   final String name;
-  
-  /// URL da foto do usuário
-  final String? photoUrl;
   
   /// Indica se o email do usuário foi verificado
   final bool emailVerified;
@@ -25,8 +22,6 @@ class UserEntity {
   const UserEntity({
     required this.id,
     required this.email,
-    required this.name,
-    this.photoUrl,
     required this.emailVerified,
     required this.createdAt,
     required this.updatedAt,
@@ -52,6 +47,4 @@ class UserEntity {
       updatedAt: updatedAt ?? this.updatedAt,
     );
   }
-  
-
 }
