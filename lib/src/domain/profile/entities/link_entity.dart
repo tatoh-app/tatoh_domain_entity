@@ -1,49 +1,57 @@
-/// Entidade que representa um link associado a um perfil
+/// Entidade que representa um link associado a um perfil,
+/// alinhada com a definição do backend.
 class LinkEntity {
-  /// ID do link
-  final int? id;
-  
-  /// ID do perfil associado ao link
-  final int? profileId;
-  
-  /// Título do link
-  final String? title;
-  
-  /// URL do link
-  final String? url;
-  
-  /// Ícone do link
-  final String? icon;
-  
-  /// Ordem de exibição do link
-  final int? order;
+  final int id;
+  final int? typeId; // ID do tipo de link (pode ser nulo)
+  final int? profileId; // ID do perfil associado (pode ser nulo)
+  final String description; // Descrição do link
+  final String value; // Valor principal do link (e.g., nome de usuário, número)
+  final String url; // URL completa do link
+  final bool public; // Indica se o link é público
+  final int orderIndex; // Índice para ordenação
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
-  /// Construtor
   const LinkEntity({
-    this.id,
+    required this.id,
+    this.typeId,
     this.profileId,
-    this.title,
-    this.url,
-    this.icon,
-    this.order,
+    required this.description,
+    required this.value,
+    required this.url,
+    required this.public,
+    required this.orderIndex,
+    required this.createdAt,
+    required this.updatedAt,
   });
-  
+
   /// Cria uma cópia da entidade com alguns campos alterados
   LinkEntity copyWith({
     int? id,
+    int? typeId,
     int? profileId,
-    String? title,
+    String? description,
+    String? value,
     String? url,
-    String? icon,
-    int? order,
+    bool? public,
+    int? orderIndex,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return LinkEntity(
       id: id ?? this.id,
+      typeId: typeId ?? this.typeId,
       profileId: profileId ?? this.profileId,
-      title: title ?? this.title,
+      description: description ?? this.description,
+      value: value ?? this.value,
       url: url ?? this.url,
-      icon: icon ?? this.icon,
-      order: order ?? this.order,
+      public: public ?? this.public,
+      orderIndex: orderIndex ?? this.orderIndex,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
+
+  // TODO: Implementar métodos equals e hashCode se necessário para comparações
+  // TODO: Implementar método toString para facilitar a depuração
 }

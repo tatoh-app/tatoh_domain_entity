@@ -1,7 +1,7 @@
-import 'feed_item_model.dart'; // Importa o FeedItemModel refatorado
-import '../../../domain/feed/entities/feed_entity.dart'; // Importa FeedEntity e FeedItemEntity
+import 'feed_item_model.dart'; // Importa o modelo filho
+import '../../../domain/feed/entities/feed_entity.dart'; // Importa as entidades
 
-/// Modelo (DTO) para serialização/deserialização de uma coleção de itens do feed.
+/// Modelo (DTO) para serialização/deserialização e transferência de dados de FeedEntity.
 /// Reside na camada de Dados.
 class FeedModel {
   /// Lista de itens do feed (como modelos)
@@ -13,40 +13,49 @@ class FeedModel {
   });
 
   /// Cria um modelo a partir de um Map (JSON)
-  factory FeedModel.fromJson(Map<String, dynamic> json) {
-    // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
-    var feedList = <FeedItemModel>[];
-    if (json['feed'] != null && json['feed'] is List) {
-      feedList = (json['feed'] as List)
-          .map((itemJson) => FeedItemModel.fromJson(itemJson as Map<String, dynamic>))
-          .toList();
-    }
+  /// Assume que o JSON raiz é uma lista de itens do feed.
+  factory FeedModel.fromJson(List<dynamic> jsonList) {
     return FeedModel(
-      feed: feedList,
+      feed: jsonList
+          .map((e) => FeedItemModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+  
+  /// Cria um modelo a partir de um Map (JSON) que contém uma chave 'feed'.
+  /// Use este se o JSON for como {'feed': [...]}
+  factory FeedModel.fromJsonMap(Map<String, dynamic> jsonMap) {
+     return FeedModel(
+      feed: (jsonMap['feed'] as List<dynamic>)
+          .map((e) => FeedItemModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
-  /// Converte o modelo para um Map (JSON)
-  Map<String, dynamic> toJson() {
+  /// Converte o modelo para uma Lista JSON (adequado se a API espera uma lista)
+  List<Map<String, dynamic>> toJsonList() {
+    return feed.map((e) => e.toJson()).toList();
+  }
+  
+  /// Converte o modelo para um Map JSON (adequado se a API espera um objeto com a chave 'feed')
+  Map<String, dynamic> toJsonMap() {
     return {
-      // Mapeia cada FeedItemModel para seu JSON correspondente
-      'feed': feed.map((itemModel) => itemModel.toJson()).toList(),
+      'feed': feed.map((e) => e.toJson()).toList(),
     };
   }
+
 
   /// Cria um modelo a partir de uma entidade do domínio
   factory FeedModel.fromEntity(FeedEntity entity) {
     return FeedModel(
-      // Mapeia cada FeedItemEntity para um FeedItemModel
-      feed: entity.feed.map((itemEntity) => FeedItemModel.fromEntity(itemEntity)).toList(),
+      feed: entity.feed.map((e) => FeedItemModel.fromEntity(e)).toList(),
     );
   }
 
   /// Converte o modelo (DTO) para uma entidade do domínio
   FeedEntity toEntity() {
     return FeedEntity(
-      // Mapeia cada FeedItemModel para uma FeedItemEntity
-      feed: feed.map((itemModel) => itemModel.toEntity()).toList(),
+      feed: feed.map((e) => e.toEntity()).toList(),
     );
   }
 }

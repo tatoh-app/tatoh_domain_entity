@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import '../../../domain/user/entities/validate_slug_entity.dart'; // Importa ValidateSlugEntity
+=======
+import '../../../domain/user/entities/validate_slug_entity.dart';
+>>>>>>> develop
 
 /// Modelo (DTO) para serialização/deserialização e transferência de dados de ValidateSlugEntity.
 /// Reside na camada de Dados.
@@ -17,7 +21,10 @@ class ValidateSlugModel {
 
   /// Cria um modelo a partir de um Map (JSON)
   factory ValidateSlugModel.fromJson(Map<String, dynamic> json) {
+<<<<<<< HEAD
     // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
+=======
+>>>>>>> develop
     return ValidateSlugModel(
       validate: json['validate'] as bool?,
       message: json['message'] as String?,
@@ -47,4 +54,8 @@ class ValidateSlugModel {
       message: message,
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> develop

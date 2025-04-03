@@ -1,6 +1,6 @@
-import '../../../domain/feed/entities/feed_entity.dart'; // Importa FeedItemEntity
+import '../../../domain/feed/entities/feed_entity.dart'; // Importa a entidade
 
-/// Modelo (DTO) para serialização/deserialização de itens individuais do feed.
+/// Modelo (DTO) para serialização/deserialização e transferência de dados de FeedItemEntity.
 /// Reside na camada de Dados.
 class FeedItemModel {
   /// Descrição do item
@@ -29,24 +29,25 @@ class FeedItemModel {
 
   /// Cria um modelo a partir de um Map (JSON)
   factory FeedItemModel.fromJson(Map<String, dynamic> json) {
-    // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
+    // Adapte as chaves JSON conforme necessário (e.g., 'url_link', 'url_image')
     return FeedItemModel(
       description: json['description'] as String,
       title: json['title'] as String,
       local: json['local'] as String?,
-      urlLink: json['url_link'] as String?, // Mantém a chave JSON original
-      urlImage: json['url_image'] as String?, // Mantém a chave JSON original
+      urlLink: json['url_link'] as String?, // Exemplo de chave JSON
+      urlImage: json['url_image'] as String?, // Exemplo de chave JSON
     );
   }
 
   /// Converte o modelo para um Map (JSON)
   Map<String, dynamic> toJson() {
+    // Adapte as chaves JSON conforme necessário
     return {
       'description': description,
       'title': title,
       'local': local,
-      'url_link': urlLink, // Mantém a chave JSON original
-      'url_image': urlImage, // Mantém a chave JSON original
+      'url_link': urlLink, // Exemplo de chave JSON
+      'url_image': urlImage, // Exemplo de chave JSON
     };
   }
 

@@ -1,0 +1,31 @@
+# Cline Rules for tatoh_domain_entity
+
+**Última Atualização:** 2025-04-02
+
+## Arquitetura e Estrutura
+
+*   **Clean Architecture:** Seguir estritamente os princípios da Clean Architecture. A camada de domínio (`lib/src/domain`) não deve ter dependências de outras camadas (Data, Presentation).
+*   **Estrutura de Diretórios:** Manter a estrutura `lib/src/domain/{conceito}/entities/` para entidades e `lib/src/data/{conceito}/models/` para modelos/DTOs.
+*   **Arquivos de Exportação:** Usar arquivos de biblioteca (`lib/src/domain/{conceito}/{conceito}.dart` e `lib/tatoh_domain_entity.dart`) para exportar apenas os elementos públicos necessários (principalmente entidades da camada de domínio). **NÃO** exportar modelos da camada de dados a partir de arquivos da camada de domínio.
+
+## Nomenclatura
+
+*   **Entidades:** Usar o sufixo `Entity` (e.g., `UserEntity`).
+*   **Modelos/DTOs:** Usar o sufixo `Model` (e.g., `UserModel`).
+*   **Arquivos:** Usar `snake_case` (e.g., `user_entity.dart`).
+
+## Codificação
+
+*   **Imutabilidade:** Entidades e Modelos devem ser imutáveis (campos `final`, construtores `const` sempre que possível). Usar métodos `copyWith` para modificações.
+*   **Mapeamento Entidade/Modelo:** Implementar métodos `fromEntity` (no Modelo) e `toEntity` (no Modelo) para conversão entre as camadas de Domínio e Dados.
+*   **Mapeamento JSON:** Implementar métodos `fromJson` e `toJson` nos Modelos da camada de Dados para serialização/deserialização, prestando atenção aos nomes das chaves JSON (`snake_case` comum em APIs).
+*   **Tipagem:** Usar tipagem forte do Dart. Lidar explicitamente com tipos nulos (`?`).
+*   **Linting:** Manter o `analysis_options.yaml` atualizado e corrigir quaisquer avisos ou erros reportados pelo linter.
+
+## Documentação (Memory Bank)
+
+*   Manter os arquivos do Memory Bank (`memory-bank/`) atualizados após cada tarefa significativa.
+*   Focar em `activeContext.md` e `progress.md` para refletir o estado atual do trabalho.
+*   Atualizar `.clinerules` com novos padrões ou preferências observados.
+
+*(Regras iniciais baseadas na tarefa de correção de erros de 2025-04-02)*

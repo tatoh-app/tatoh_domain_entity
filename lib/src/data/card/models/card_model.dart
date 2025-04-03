@@ -1,5 +1,4 @@
 import '../../../domain/card/entities/card_entity.dart'; // Caminho relativo atualizado
-// Importa a entidade do domínio
 
 /// Modelo (DTO) para serialização/deserialização e transferência de dados de CardEntity.
 /// Reside na camada de Dados.
@@ -22,20 +21,21 @@ class CardModel {
 
   /// Cria um modelo a partir de um Map (JSON)
   factory CardModel.fromJson(Map<String, dynamic> json) {
-    // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
+    // Adapte as chaves JSON conforme necessário (e.g., 'profile_id', 'qr_code', 'artwork_url')
     return CardModel(
-      profileID: json['profileID'] as int,
-      qrCode: json['qrCode'] as String,
-      artworkUrl: json['artworkUrl'] as String,
+      profileID: json['profile_id'] as int, // Exemplo de chave JSON
+      qrCode: json['qr_code'] as String, // Exemplo de chave JSON
+      artworkUrl: json['artwork_url'] as String, // Exemplo de chave JSON
     );
   }
 
   /// Converte o modelo para um Map (JSON)
   Map<String, dynamic> toJson() {
+    // Adapte as chaves JSON conforme necessário
     return {
-      'profileID': profileID,
-      'qrCode': qrCode,
-      'artworkUrl': artworkUrl,
+      'profile_id': profileID, // Exemplo de chave JSON
+      'qr_code': qrCode, // Exemplo de chave JSON
+      'artwork_url': artworkUrl, // Exemplo de chave JSON
     };
   }
 
