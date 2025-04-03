@@ -3,34 +3,27 @@ import '../../../domain/user/entities/user_entity.dart'; // Importa UserEntity
 /// Modelo (DTO) para serialização/deserialização e transferência de dados de UserEntity.
 /// Reside na camada de Dados.
 class UserModel {
-  /// ID único do usuário (como String, baseado na serialização original)
-  final String id;
-
-  /// Email do usuário
+  final int id;
   final String email;
-
-  /// Nome do usuário
-  final String name;
-
-  /// URL da foto do usuário
-  final String? photoUrl;
-
-  /// Indica se o email do usuário foi verificado
-  final bool emailVerified;
-
-  /// Data de criação da conta
+  final String? customerId;
+  final int? defaultProfileId;
+  final String? firebaseUid;
+  final String? provider;
+  final String? refreshToken; // Geralmente não serializado/deserializado
+  final DateTime? lastLogin;
   final DateTime createdAt;
-
-  /// Data da última atualização da conta
   final DateTime updatedAt;
 
   /// Construtor
   UserModel({
     required this.id,
     required this.email,
-    required this.name,
-    this.photoUrl,
-    required this.emailVerified,
+    this.customerId,
+    this.defaultProfileId,
+    this.firebaseUid,
+    this.provider,
+    this.refreshToken,
+    this.lastLogin,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -39,13 +32,16 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
     return UserModel(
-      id: json['id'] as String, // Mantém como String
+      id: json['id'] as int,
       email: json['email'] as String,
-      name: json['name'] as String,
-      photoUrl: json['photo_url'] as String?, // Chave JSON específica
-      emailVerified: json['email_verified'] as bool, // Chave JSON específica
-      createdAt: DateTime.parse(json['created_at'] as String), // Chave JSON específica
-      updatedAt: DateTime.parse(json['updated_at'] as String), // Chave JSON específica
+      customerId: json['customer_id'] as String?, // Assumindo snake_case
+      defaultProfileId: json['default_profile_id'] as int?, // Assumindo snake_case
+      firebaseUid: json['firebase_uid'] as String?, // Assumindo snake_case
+      provider: json['provider'] as String?,
+      refreshToken: json['refresh_token'] as String?, // Se presente no JSON
+      lastLogin: json['last_login'] == null ? null : DateTime.parse(json['last_login'] as String), // Assumindo snake_case
+      createdAt: DateTime.parse(json['created_at'] as String), // Assumindo snake_case
+      updatedAt: DateTime.parse(json['updated_at'] as String), // Assumindo snake_case
     );
   }
 
@@ -54,23 +50,28 @@ class UserModel {
     return {
       'id': id,
       'email': email,
-      'name': name,
-      'photo_url': photoUrl, // Chave JSON específica
-      'email_verified': emailVerified, // Chave JSON específica
-      'created_at': createdAt.toIso8601String(), // Chave JSON específica
-      'updated_at': updatedAt.toIso8601String(), // Chave JSON específica
+      if (customerId != null) 'customer_id': customerId,
+      if (defaultProfileId != null) 'default_profile_id': defaultProfileId,
+      if (firebaseUid != null) 'firebase_uid': firebaseUid,
+      if (provider != null) 'provider': provider,
+      // Geralmente não incluímos refreshToken no toJson
+      if (lastLogin != null) 'last_login': lastLogin!.toIso8601String(),
+      'created_at': createdAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
     };
   }
 
   /// Cria um modelo a partir de uma entidade do domínio
   factory UserModel.fromEntity(UserEntity entity) {
-    // Nota: Conversão de int para String para o ID
     return UserModel(
-      id: entity.id.toString(), // Converte int da entidade para String
+      id: entity.id,
       email: entity.email,
-      name: entity.name,
-      // photoUrl não está diretamente na entidade, apenas no copyWith
-      emailVerified: entity.emailVerified,
+      customerId: entity.customerId,
+      defaultProfileId: entity.defaultProfileId,
+      firebaseUid: entity.firebaseUid,
+      provider: entity.provider,
+      refreshToken: entity.refreshToken,
+      lastLogin: entity.lastLogin,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -78,14 +79,15 @@ class UserModel {
 
   /// Converte o modelo (DTO) para uma entidade do domínio
   UserEntity toEntity() {
-    // Nota: Conversão de String para int para o ID. Pode falhar se o ID não for numérico.
-    // TODO: Adicionar tratamento de erro para a conversão do ID.
     return UserEntity(
-      id: int.tryParse(id) ?? 0, // Tenta converter String para int, com fallback para 0
+      id: id,
       email: email,
-      // name não está no construtor principal da entidade
-      // photoUrl não existe no construtor principal da entidade, apenas no copyWith
-      emailVerified: emailVerified,
+      customerId: customerId,
+      defaultProfileId: defaultProfileId,
+      firebaseUid: firebaseUid,
+      provider: provider,
+      refreshToken: refreshToken,
+      lastLogin: lastLogin,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

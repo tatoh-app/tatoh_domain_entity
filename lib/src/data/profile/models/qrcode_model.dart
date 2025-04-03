@@ -1,28 +1,6 @@
 import '../../../domain/profile/entities/qrcode_entity.dart'; // Importa QRCodeEntity
 
 /// Modelo (DTO) para serialização/deserialização e transferência de dados de QRCodeEntity.
-<<<<<<< HEAD
-/// Reside na camada de Dados.
-class QRCodeModel {
-  /// ID do código QR
-  final int? id;
-
-  /// ID do perfil associado ao código QR
-  final int? profileId;
-
-  /// Código QR
-  final String? qrcode;
-
-  /// URL da imagem do código QR
-  final String? artworkUrl;
-
-  /// Construtor
-  QRCodeModel({
-    this.id,
-    this.profileId,
-    this.qrcode,
-    this.artworkUrl,
-=======
 /// Reside na camada de Dados. Alinhado com a QRCodeEntity atualizada.
 class QRCodeModel {
   /// ID do código QR
@@ -67,19 +45,11 @@ class QRCodeModel {
     required this.allotmentDescription,
     required this.createdAt,
     required this.updatedAt,
->>>>>>> develop
   });
 
   /// Cria um modelo a partir de um Map (JSON)
   factory QRCodeModel.fromJson(Map<String, dynamic> json) {
-<<<<<<< HEAD
     // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
-    return QRCodeModel(
-      id: json['id'] as int?,
-      profileId: json['profile_id'] as int?, // Chave JSON específica
-      qrcode: json['qrcode'] as String?,
-      artworkUrl: json['artwork_url'] as String?, // Chave JSON específica
-=======
     return QRCodeModel(
       id: json['id'] as int,
       typeId: json['type_id'] as int?, // Chave JSON específica
@@ -91,7 +61,6 @@ class QRCodeModel {
       allotmentDescription: json['allotment_description'] as String, // Chave JSON específica
       createdAt: DateTime.parse(json['created_at'] as String), // Chave JSON específica
       updatedAt: DateTime.parse(json['updated_at'] as String), // Chave JSON específica
->>>>>>> develop
     );
   }
 
@@ -99,11 +68,6 @@ class QRCodeModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-<<<<<<< HEAD
-      'profile_id': profileId, // Chave JSON específica
-      'qrcode': qrcode,
-      'artwork_url': artworkUrl, // Chave JSON específica
-=======
       'type_id': typeId, // Chave JSON específica
       'profile_id': profileId, // Chave JSON específica
       'sale_id': saleId, // Chave JSON específica
@@ -113,7 +77,6 @@ class QRCodeModel {
       'allotment_description': allotmentDescription, // Chave JSON específica
       'created_at': createdAt.toIso8601String(), // Chave JSON específica
       'updated_at': updatedAt.toIso8601String(), // Chave JSON específica
->>>>>>> develop
     };
   }
 
@@ -121,11 +84,6 @@ class QRCodeModel {
   factory QRCodeModel.fromEntity(QRCodeEntity entity) {
     return QRCodeModel(
       id: entity.id,
-<<<<<<< HEAD
-      profileId: entity.profileId,
-      qrcode: entity.qrcode,
-      artworkUrl: entity.artworkUrl,
-=======
       typeId: entity.typeId,
       profileId: entity.profileId,
       saleId: entity.saleId,
@@ -135,7 +93,6 @@ class QRCodeModel {
       allotmentDescription: entity.allotmentDescription,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
->>>>>>> develop
     );
   }
 
@@ -143,14 +100,6 @@ class QRCodeModel {
   QRCodeEntity toEntity() {
     return QRCodeEntity(
       id: id,
-<<<<<<< HEAD
-      profileId: profileId,
-      qrcode: qrcode,
-      artworkUrl: artworkUrl,
-    );
-  }
-}
-=======
       typeId: typeId,
       profileId: profileId,
       saleId: saleId,
@@ -163,4 +112,3 @@ class QRCodeModel {
     );
   }
 }
->>>>>>> develop

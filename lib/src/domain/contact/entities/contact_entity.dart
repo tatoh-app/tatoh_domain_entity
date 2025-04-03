@@ -1,38 +1,37 @@
-/// Entidade que representa um contato no sistema
+/// Entidade que representa um contato (relação entre dois usuários/perfis) no sistema,
+/// alinhada com a definição do backend.
 class ContactEntity {
-  /// ID nome do contato
-  final String name;
+  final int id;
+  final int ownerId; // ID do "dono" da relação de contato
+  final int contactId; // ID do usuário/perfil que é o contato
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
-  /// URL da foto do contato
-  final String photoUrl;
-
-  /// Identificador único do contato (slug)
-  final String slug;
-
-  /// Dados adicionais que podem ser usados pelo aplicativo
-  final Map<String, dynamic>? extraData;
-
-  /// Construtor
   const ContactEntity({
-    required this.name,
-    required this.slug,
-    required this.photoUrl,
-    this.extraData,
-
+    required this.id,
+    required this.ownerId,
+    required this.contactId,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   /// Cria uma cópia da entidade com alguns campos alterados
   ContactEntity copyWith({
-    String? name,
-    String? slug,
-    String? photoUrl,
-    Map<String, dynamic>? extraData,
+    int? id,
+    int? ownerId,
+    int? contactId,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return ContactEntity(
-      name: name ?? this.name,
-      slug: slug ?? this.slug,
-      photoUrl: photoUrl ?? this.photoUrl,
-      extraData: extraData ?? this.extraData,
+      id: id ?? this.id,
+      ownerId: ownerId ?? this.ownerId,
+      contactId: contactId ?? this.contactId,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
+
+  // TODO: Implementar métodos equals e hashCode se necessário para comparações
+  // TODO: Implementar método toString para facilitar a depuração
 }

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import '../../../domain/theme/entities/solid_colors_entity.dart'; // Importa SolidColorsEntity
-=======
 import '../../../domain/theme/entities/solid_colors_entity.dart';
->>>>>>> develop
 
 /// Modelo (DTO) para serialização/deserialização e transferência de dados de SolidColorsEntity.
 /// Reside na camada de Dados.
@@ -10,11 +6,7 @@ class SolidColorsModel {
   /// ID da cor
   final int id;
 
-<<<<<<< HEAD
-  /// Valor da cor (geralmente um valor ARGB)
-=======
   /// Valor da cor (geralmente um valor ARGB int)
->>>>>>> develop
   final int color;
 
   /// Construtor
@@ -25,10 +17,6 @@ class SolidColorsModel {
 
   /// Cria um modelo a partir de um Map (JSON)
   factory SolidColorsModel.fromJson(Map<String, dynamic> json) {
-<<<<<<< HEAD
-    // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
-=======
->>>>>>> develop
     return SolidColorsModel(
       id: json['id'] as int,
       color: json['color'] as int,
@@ -58,8 +46,4 @@ class SolidColorsModel {
       color: color,
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> develop

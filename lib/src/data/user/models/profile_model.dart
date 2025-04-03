@@ -3,62 +3,25 @@ import '../../../domain/user/entities/profile_entity.dart'; // Importa ProfileEn
 /// Modelo (DTO) para serialização/deserialização e transferência de dados de ProfileEntity.
 /// Reside na camada de Dados.
 class ProfileModel {
-  /// ID único do perfil
   final int id;
-
-  /// ID do usuário associado a este perfil
-  final String userId;
-
-  /// Nome do perfil
-  final String name;
-
-  /// Slug único para o perfil (usado em URLs)
+  final int userId;
+  final int? addressId;
   final String slug;
-
-  /// URL da foto do perfil
-  final String? photoUrl;
-
-  /// Biografia ou descrição do perfil
-  final String? bio;
-
-  /// Número de telefone
-  final String? phoneNumber;
-
-  /// Cargo ou título profissional
-  final String? title;
-
-  /// Empresa ou organização
-  final String? company;
-
-  /// Website pessoal ou profissional
-  final String? website;
-
-  /// Localização
-  final String? location;
-
-  /// Redes sociais
-  final Map<String, String>? socialLinks;
-
-  /// Data de criação do perfil
+  final String name;
+  final String bio;
+  final String photoUrl;
   final DateTime createdAt;
-
-  /// Data da última atualização do perfil
   final DateTime updatedAt;
 
   /// Construtor
   ProfileModel({
     required this.id,
     required this.userId,
-    required this.name,
+    this.addressId,
     required this.slug,
-    this.photoUrl,
-    this.bio,
-    this.phoneNumber,
-    this.title,
-    this.company,
-    this.website,
-    this.location,
-    this.socialLinks,
+    required this.name,
+    required this.bio,
+    required this.photoUrl,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -68,21 +31,14 @@ class ProfileModel {
     // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
     return ProfileModel(
       id: json['id'] as int,
-      userId: json['userId'] as String,
-      name: json['name'] as String,
+      userId: json['user_id'] as int, // Assumindo snake_case e int
+      addressId: json['address_id'] as int?, // Assumindo snake_case e int?
       slug: json['slug'] as String,
-      photoUrl: json['photoUrl'] as String?,
-      bio: json['bio'] as String?,
-      phoneNumber: json['phoneNumber'] as String?,
-      title: json['title'] as String?,
-      company: json['company'] as String?,
-      website: json['website'] as String?,
-      location: json['location'] as String?,
-      socialLinks: (json['socialLinks'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String), // Garante que o valor é String
-      ),
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      name: json['name'] as String,
+      bio: json['bio'] as String, // Assumindo não nulo
+      photoUrl: json['photo_url'] as String, // Assumindo snake_case e não nulo
+      createdAt: DateTime.parse(json['created_at'] as String), // Assumindo snake_case
+      updatedAt: DateTime.parse(json['updated_at'] as String), // Assumindo snake_case
     );
   }
 
@@ -90,19 +46,14 @@ class ProfileModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'userId': userId,
-      'name': name,
+      'user_id': userId,
+      if (addressId != null) 'address_id': addressId,
       'slug': slug,
-      'photoUrl': photoUrl,
+      'name': name,
       'bio': bio,
-      'phoneNumber': phoneNumber,
-      'title': title,
-      'company': company,
-      'website': website,
-      'location': location,
-      'socialLinks': socialLinks,
-      'createdAt': createdAt.toIso8601String(), // Converte DateTime para String ISO8601
-      'updatedAt': updatedAt.toIso8601String(), // Converte DateTime para String ISO8601
+      'photo_url': photoUrl,
+      'created_at': createdAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
     };
   }
 
@@ -111,16 +62,11 @@ class ProfileModel {
     return ProfileModel(
       id: entity.id,
       userId: entity.userId,
-      name: entity.name,
+      addressId: entity.addressId,
       slug: entity.slug,
-      photoUrl: entity.photoUrl,
+      name: entity.name,
       bio: entity.bio,
-      phoneNumber: entity.phoneNumber,
-      title: entity.title,
-      company: entity.company,
-      website: entity.website,
-      location: entity.location,
-      socialLinks: entity.socialLinks,
+      photoUrl: entity.photoUrl,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     );
@@ -131,16 +77,11 @@ class ProfileModel {
     return ProfileEntity(
       id: id,
       userId: userId,
-      name: name,
+      addressId: addressId,
       slug: slug,
-      photoUrl: photoUrl,
+      name: name,
       bio: bio,
-      phoneNumber: phoneNumber,
-      title: title,
-      company: company,
-      website: website,
-      location: location,
-      socialLinks: socialLinks,
+      photoUrl: photoUrl,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

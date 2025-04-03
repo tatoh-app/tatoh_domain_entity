@@ -1,4 +1,4 @@
-import 'package:tatoh_domain_entity/src/domain/user/entities/user_entity.dart';
+import '../../user/entities/user_entity.dart';
 
 /// Entidade que representa uma lista de perfis de um usuário
 class ListProfilesEntity {

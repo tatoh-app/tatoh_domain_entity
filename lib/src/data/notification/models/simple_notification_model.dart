@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import '../../../domain/notification/entities/simple_notification_entity.dart'; // Importa SimpleNotificationEntity
-=======
 import '../../../domain/notification/entities/simple_notification_entity.dart';
->>>>>>> develop
 
 /// Modelo (DTO) para serialização/deserialização e transferência de dados de SimpleNotificationEntity.
 /// Reside na camada de Dados.
@@ -16,17 +12,10 @@ class SimpleNotificationModel {
   /// Corpo ou conteúdo da notificação
   final String body;
 
-<<<<<<< HEAD
-  /// Tipo da notificação
-  final String? type;
-
-  /// Dados adicionais específicos do tipo de notificação
-=======
   /// Tipo da notificação (pode ser nulo)
   final String? type;
 
   /// Dados adicionais específicos do tipo de notificação (Map<String, dynamic>)
->>>>>>> develop
   final Map<String, dynamic>? data;
 
   /// Data e hora em que a notificação foi criada
@@ -52,21 +41,6 @@ class SimpleNotificationModel {
 
   /// Cria um modelo a partir de um Map (JSON)
   factory SimpleNotificationModel.fromJson(Map<String, dynamic> json) {
-<<<<<<< HEAD
-    // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
-    // Mantém a lógica original de tratamento de ausência de chaves
-    return SimpleNotificationModel(
-      id: json.containsKey('id') ? json['id'] as String? ?? '' : '',
-      title: json.containsKey('title') ? json['title'] as String? ?? '' : '',
-      body: json.containsKey('body') ? json['body'] as String? ?? '' : '',
-      type: json.containsKey('type') ? json['type'] as String? : 'NOTIFICATION', // Valor padrão se ausente
-      data: json.containsKey('data') ? json['data'] as Map<String, dynamic>? : {}, // Valor padrão se ausente
-      time: DateTime.parse(json.containsKey('time')
-          ? json['time'] as String? ?? DateTime.now().toIso8601String()
-          : DateTime.now().toIso8601String()), // Valor padrão se ausente
-      read: json.containsKey('read') ? json['read'] as bool? ?? false : false, // Valor padrão se ausente
-      deleted: json.containsKey('deleted') ? json['deleted'] as bool? ?? false : false, // Valor padrão se ausente
-=======
     return SimpleNotificationModel(
       id: json['id'] as String,
       title: json['title'] as String,
@@ -76,7 +50,6 @@ class SimpleNotificationModel {
       time: DateTime.parse(json['time'] as String),
       read: json['read'] as bool? ?? false,
       deleted: json['deleted'] as bool? ?? false,
->>>>>>> develop
     );
   }
 
@@ -86,15 +59,9 @@ class SimpleNotificationModel {
       'id': id,
       'title': title,
       'body': body,
-<<<<<<< HEAD
-      'type': type ?? 'NOTIFICATION', // Usa valor padrão se nulo
-      'data': data ?? {}, // Usa valor padrão se nulo
-      'time': time.toIso8601String(), // Converte DateTime para String ISO8601
-=======
       'type': type,
       'data': data,
       'time': time.toIso8601String(),
->>>>>>> develop
       'read': read,
       'deleted': deleted,
     };
@@ -127,8 +94,4 @@ class SimpleNotificationModel {
       deleted: deleted,
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> develop

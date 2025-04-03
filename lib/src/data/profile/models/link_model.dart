@@ -1,36 +1,6 @@
 import '../../../domain/profile/entities/link_entity.dart'; // Importa LinkEntity
 
 /// Modelo (DTO) para serialização/deserialização e transferência de dados de LinkEntity.
-<<<<<<< HEAD
-/// Reside na camada de Dados.
-class LinkModel {
-  /// ID do link
-  final int? id;
-
-  /// ID do perfil associado ao link
-  final int? profileId;
-
-  /// Título do link
-  final String? title;
-
-  /// URL do link
-  final String? url;
-
-  /// Ícone do link
-  final String? icon;
-
-  /// Ordem de exibição do link
-  final int? order;
-
-  /// Construtor
-  LinkModel({
-    this.id,
-    this.profileId,
-    this.title,
-    this.url,
-    this.icon,
-    this.order,
-=======
 /// Reside na camada de Dados. Alinhado com a LinkEntity atualizada.
 class LinkModel {
   /// ID do link
@@ -75,21 +45,10 @@ class LinkModel {
     required this.orderIndex,
     required this.createdAt,
     required this.updatedAt,
->>>>>>> develop
   });
 
   /// Cria um modelo a partir de um Map (JSON)
   factory LinkModel.fromJson(Map<String, dynamic> json) {
-<<<<<<< HEAD
-    // TODO: Considerar adicionar validações ou tratamento de nulos mais robusto
-    return LinkModel(
-      id: json['id'] as int?,
-      profileId: json['profile_id'] as int?, // Chave JSON específica
-      title: json['title'] as String?,
-      url: json['url'] as String?,
-      icon: json['icon'] as String?,
-      order: json['order'] as int?,
-=======
     return LinkModel(
       id: json['id'] as int,
       typeId: json['type_id'] as int?, // Chave JSON específica
@@ -101,7 +60,6 @@ class LinkModel {
       orderIndex: json['order_index'] as int, // Chave JSON específica
       createdAt: DateTime.parse(json['created_at'] as String), // Chave JSON específica
       updatedAt: DateTime.parse(json['updated_at'] as String), // Chave JSON específica
->>>>>>> develop
     );
   }
 
@@ -109,13 +67,6 @@ class LinkModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-<<<<<<< HEAD
-      'profile_id': profileId, // Chave JSON específica
-      'title': title,
-      'url': url,
-      'icon': icon,
-      'order': order,
-=======
       'type_id': typeId, // Chave JSON específica
       'profile_id': profileId, // Chave JSON específica
       'description': description,
@@ -125,7 +76,6 @@ class LinkModel {
       'order_index': orderIndex, // Chave JSON específica
       'created_at': createdAt.toIso8601String(), // Chave JSON específica
       'updated_at': updatedAt.toIso8601String(), // Chave JSON específica
->>>>>>> develop
     };
   }
 
@@ -133,13 +83,6 @@ class LinkModel {
   factory LinkModel.fromEntity(LinkEntity entity) {
     return LinkModel(
       id: entity.id,
-<<<<<<< HEAD
-      profileId: entity.profileId,
-      title: entity.title,
-      url: entity.url,
-      icon: entity.icon,
-      order: entity.order,
-=======
       typeId: entity.typeId,
       profileId: entity.profileId,
       description: entity.description,
@@ -149,7 +92,6 @@ class LinkModel {
       orderIndex: entity.orderIndex,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
->>>>>>> develop
     );
   }
 
@@ -157,16 +99,6 @@ class LinkModel {
   LinkEntity toEntity() {
     return LinkEntity(
       id: id,
-<<<<<<< HEAD
-      profileId: profileId,
-      title: title,
-      url: url,
-      icon: icon,
-      order: order,
-    );
-  }
-}
-=======
       typeId: typeId,
       profileId: profileId,
       description: description,
@@ -179,4 +111,3 @@ class LinkModel {
     );
   }
 }
->>>>>>> develop
