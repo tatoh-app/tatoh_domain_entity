@@ -1,6 +1,6 @@
 name: tatoh_domain_entity
 description: Pacote que contém todas as entidades de domínio do projeto Tatoh
-version: 0.0.1
+version: 0.0.2
 publish_to: none
 
 environment:
